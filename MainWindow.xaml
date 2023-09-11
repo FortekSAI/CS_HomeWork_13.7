@@ -1,0 +1,180 @@
+﻿<Window x:Class="CS_HomeWork_13._7.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CS_HomeWork_13._7"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="515" Width="877" Closed="Window_Closed_1">
+    <Grid Margin="0,0,0,56">
+        <Grid Margin="10,10,10,0" Height="44" VerticalAlignment="Top">
+            <ComboBox Name ="Employee_Type_Choose_ComboBox" HorizontalAlignment="Left" Margin="566,11,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="Employee_Type_Choose_ComboBox_SelectionChanged">
+                <ComboBoxItem Name ="Manager">
+                    <TextBlock Text="Менеджер"/>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Consultant">
+                    <TextBlock Text="Консультант"/>
+                </ComboBoxItem>
+            </ComboBox>
+            <TextBox x:Name="Employee_FirstName_TextBox" HorizontalAlignment="Left" Margin="167,12,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="Employee_FirstName_TextBox_TextChanged"/>
+            <TextBox x:Name="Employee_SecondName_TextBox" HorizontalAlignment="Left" Margin="364,12,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="Employee_SecondName_TextBox_TextChanged"/>
+            <TextBlock x:Name="Enter_Text" HorizontalAlignment="Left" Margin="10,12,0,0" TextWrapping="Wrap" Text="Зайти как:" TextAlignment="Right" VerticalAlignment="Top" Width="106" Height="18"/>
+            <Button Name="Employee_Enter_Button"  Content="Войти" HorizontalAlignment="Left" Margin="693,12,0,0" VerticalAlignment="Top" Width="60" Click="Employee_Enter_Button_Click"/>
+            <TextBlock HorizontalAlignment="Left" Margin="123,12,0,0" TextWrapping="Wrap" Text="Имя" TextAlignment="Right" VerticalAlignment="Top" Width="40" Height="18"/>
+            <TextBlock HorizontalAlignment="Left" Margin="292,12,0,0" TextWrapping="Wrap" Text="Фамилия" TextAlignment="Right" VerticalAlignment="Top" Width="69" Height="18"/>
+            <TextBlock x:Name="Post_Text" HorizontalAlignment="Left" Margin="489,12,0,0" TextWrapping="Wrap" Text="Должность" TextAlignment="Right" VerticalAlignment="Top" Width="71" Height="18"/>
+        </Grid>
+        <Grid x:Name="Main_Grid" Margin="0,76,0,-53">
+            <Grid Margin="0,-24,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="68*"/>
+                    <ColumnDefinition Width="125*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="32*"/>
+                    <RowDefinition Height="273*"/>
+                    <RowDefinition Height="139*"/>
+                </Grid.RowDefinitions>
+                <DataGrid  Name ="Clients_list_DataGrid"  Margin="10,11,10,2" AutoGenerateColumns="False" SelectionChanged="Clients_list_DataGrid_SelectionChanged" Grid.Row="1" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="Last_Name_Clmn"  Header="Фамилия" Binding="{Binding Path=Last_name}" Width="90"/>
+                        <DataGridTextColumn x:Name="Fitst_Name_Clmn" Header="Имя" Binding="{Binding Path=First_name}" Width="90"/>
+                        <DataGridTextColumn x:Name="Patronymic_Clmn" Header="Отчество" Binding="{Binding Path=Patronymic}" Width="110"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Name ="Create_new_rnd_client" Content="Создать рандомного клиента" Margin="10,0,122,0" Click="Create_new_rnd_client_Click" Height="23" VerticalAlignment="Center"/>
+                <DataGrid Name="Accounts_list" Grid.Row="1" Margin="0,0,10,2" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="Accounts_list_SelectionChanged" LostFocus="Accounts_list_LostFocus" Height="81" VerticalAlignment="Bottom" Grid.Column="1">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="Account_type" Header="Тип счета" Binding="{Binding Path=Type}" Width="110"/>
+                        <DataGridTextColumn x:Name="Account_number" Header="Номер счета" Binding="{Binding Path=Number}" Width="135"/>
+                        <DataGridTextColumn x:Name="Amount" Header="Сумма" Binding="{Binding Path=Amount}" Width="110"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <TabControl Margin="0,7,10,0" Height="202" VerticalAlignment="Top" Grid.RowSpan="2" Grid.Column="1">
+                    <TabItem Name="NewClient_Creation_Tab" Header="Добавление нового клиента">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Имя" HorizontalAlignment="Left" Margin="2,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" TextAlignment="Right" Height="18" />
+                            <TextBox x:Name="FirstName_Box" HorizontalAlignment="Left" Margin="96,33,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Height="18" TextChanged="FirstName_Box_TextChanged" />
+                            <TextBlock HorizontalAlignment="Left" Margin="2,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" TextAlignment="Right" Height="18" ><Run Language="ru-ru" Text="Фамилия"/></TextBlock>
+                            <TextBox x:Name="LastName_Box" HorizontalAlignment="Left" Margin="96,5,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Height="18" TextChanged="LastName_Box_TextChanged" />
+                            <TextBlock HorizontalAlignment="Left" Margin="2,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" TextAlignment="Right" Height="18" ><Run Language="ru-ru" Text="Отчество"/></TextBlock>
+                            <TextBox x:Name="Patronimic_Box" HorizontalAlignment="Left" Margin="96,61,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Height="18" TextChanged="Patronimic_Box_TextChanged" />
+                            <Button x:Name="Add_client_button" Content="Добавить клиента" HorizontalAlignment="Left" Margin="96,84,0,0" VerticalAlignment="Top" IsEnabled="False" Width="120" Height="20" Click="Add_client_button_Click"/>
+                        </Grid>
+
+                    </TabItem>
+                    <TabItem Header="Создание/Закрытие счёта">
+                        <Grid Background="#FFE5E5E5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="Selected_account_textblock" Text="......" HorizontalAlignment="Left" Margin="10,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="386"/>
+                            <Button x:Name="Account_close_button" Content="Закрыть счет" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Height="22" Width="100" IsEnabled="False" Click="Account_close_button_Click"/>
+                            <Button x:Name="Account_type_choose_button" Content="Создать счет" HorizontalAlignment="Left" Margin="262,8,0,0" VerticalAlignment="Top" Width="90" Click="Account_type_choose_button_Click" IsEnabled="False" Height="26" RenderTransformOrigin="0.5,0.5" >
+                                <Button.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleY="1"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Button.RenderTransform>
+                            </Button>
+                            <ComboBox x:Name="Choose_account_type" HorizontalAlignment="Left" Margin="137,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="Choose_account_type_SelectionChanged" Height="22">
+                                <ComboBoxItem Name ="Nondeposit">
+                                    <TextBlock> Недепозитный</TextBlock>
+                                </ComboBoxItem>
+                                <ComboBoxItem Name="Deposit">
+                                    <TextBlock> Депозитный</TextBlock>
+                                </ComboBoxItem>
+                            </ComboBox>
+                            <TextBlock x:Name="Current_client_textblock" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249" Height="22"/>
+                            <TextBlock  Text="Выберите тип счета"  HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="124" Height="22"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Пополнение счета">
+                        <Grid>
+                            <TextBox Name="Top_Up_Summ_TextBox" HorizontalAlignment="Left" Margin="123,58,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="73" TextChanged="Top_Up_Summ_TextBox_TextChanged"/>
+                            <TextBlock Name="Top_Up_Client_Text" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding Path=FIO, Mode=Default}" VerticalAlignment="Top" Width="305"/>
+                            <ComboBox Name="Top_Up_Clients_Counts_ConboBox" HorizontalAlignment="Left" Margin="64,31,0,0" VerticalAlignment="Top" Width="330" SelectionChanged="Top_Up_Clients_Counts_ConboBox_SelectionChanged">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Info, Mode=Default}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <TextBlock HorizontalAlignment="Left" Margin="10,58,0,0" TextWrapping="Wrap" Text="Сумма пополнения" VerticalAlignment="Top" Width="108"/>
+                            <Button Name="Top_Up_Button" IsEnabled="False" Content="Пополнить" HorizontalAlignment="Left" Margin="280,56,0,0" VerticalAlignment="Top" Width="114" Click="Top_Up_Button_Click"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="10,31,0,0" TextWrapping="Wrap" Text="Счет" Width="49" Height="22" VerticalAlignment="Top"/>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Перевод средств">
+                        <Grid Background="#FFE5E5E5" Height="174" Margin="0,0,1,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="328*"/>
+                                <ColumnDefinition Width="359*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock HorizontalAlignment="Left" Margin="10,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67"><Run Language="ru-ru" Text="Кому"/><Run Text=":"/></TextBlock>
+                            <TextBlock Name="Exchange_text_account_from" HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67"><Run Language="ru-ru" Text="Счет"/><Run Text=":"/></TextBlock>
+                            <TextBlock HorizontalAlignment="Left" Margin="10,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67"><Run Language="ru-ru" Text="От кого"/><Run Text=":"/></TextBlock>
+                            <TextBlock Name="Exchange_text_account_to" HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67"><Run Language="ru-ru" Text="Счет"/><Run Text=":"/></TextBlock>
+                            <ComboBox Name="Exchange_ComboBox_account_from" HorizontalAlignment="Left" Margin="67,97,0,0" VerticalAlignment="Top" Width="317" SelectionChanged="Exchange_ComboBox_account_from_SelectionChanged" Grid.ColumnSpan="2">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Info, Mode=Default}"></TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox Name="Exchange_ComboBox_account_to" HorizontalAlignment="Left" Margin="67,37,0,0" VerticalAlignment="Top" Width="317" SelectionChanged="Exchange_ComboBox_account_to_SelectionChanged" Grid.ColumnSpan="2">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Info, Mode=Default}"></TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox Name="Exchange_ComboBox_client_from" HorizontalAlignment="Left" Margin="67,70,0,0" VerticalAlignment="Top" Width="317" SelectionChanged="Exchange_ComboBox_client_from_SelectionChanged" Grid.ColumnSpan="2">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=FIO, Mode=Default}"></TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox Name="Exchange_ComboBox_client_to" HorizontalAlignment="Left" Margin="67,10,0,0" VerticalAlignment="Top" Width="317" SelectionChanged="Exchange_ComboBox_client_to_SelectionChanged" Grid.ColumnSpan="2">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=FIO, Mode=Default}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Button Name="Exchange_accept_button" Content="Перевести" HorizontalAlignment="Left" Margin="294,127,0,0" VerticalAlignment="Top" Width="90" IsEnabled="False" Click="Exchange_accept_button_Click" RenderTransformOrigin="-0.854,0.768" Grid.ColumnSpan="2"/>
+                            <TextBox x:Name="Exchange_summ_textbox" HorizontalAlignment="Left" Margin="166,127,0,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top" Width="120" Height="20" TextChanged="Exchange_summ_textbox_TextChanged"/>
+                            <TextBlock x:Name="Exchange_warning_textblock" HorizontalAlignment="Left" Margin="166,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="356" Grid.ColumnSpan="2"/>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+                <DataGrid x:Name="Operations_Log_DataGrid" IsReadOnly="True" Grid.Row="2" Margin="10,18,10,0" Grid.ColumnSpan="2" AutoGenerateColumns="False" Height="111" VerticalAlignment="Top">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Клиент" Binding="{Binding Path= Client}" Width="190"/>
+                        <DataGridTextColumn Header="Операция" Binding="{Binding Path= OperationType}" Width="300"/>
+                        <DataGridTextColumn Header="Счёт №" Binding="{Binding Path= AccountNumber}" Width="135"/>
+                        <DataGridTextColumn Header="Работник" Binding="{Binding Path= Employee}" Width="160"/>
+                        <DataGridTextColumn Header="Время" Binding="{Binding Path= Time}" Width="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+
+
+
+
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Window>
